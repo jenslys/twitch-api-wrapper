@@ -7,6 +7,7 @@ const app = express();
 const baseUrl = 'https://api.twitch.tv/helix';
 const clientId = process.env.TWITCH_CLIENT_ID;
 const authToken = process.env.TWITCH_AUTH_TOKEN;
+const port = process.env.PORT || 3000;
 
 const limiter = rateLimit({
   // limits it to 2 requests per minute
@@ -33,6 +34,6 @@ app.get('/title/:username', async (req, res) => {
   res.send({ streamTitle });
 });
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000!');
+app.listen(port, () => {
+  console.log("Listening on port" + port);
 });
