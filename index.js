@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 const limiter = rateLimit({
   // limits it to 2 requests per minute
 	windowMs: 60000,
-	max: 2, 
+	max: 4, 
 	standardHeaders: true,
 	legacyHeaders: false,
 })
