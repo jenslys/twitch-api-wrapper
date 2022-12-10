@@ -4,7 +4,7 @@ Public API that wraps around the [Twitch Helix API](https://dev.twitch.tv/docs/a
 
 This was made as an companion tool for [AutoVOD](https://github.com/jenslys/autovod). So currently the only endpoints are for fetching the stream title and game.
 
-**Limitation**: The Twitch API dosent return anything if the streamer is not live.
+**Limitation**: The Twitch API doesn't return anything if the streamer is not live.
 
 ## Endpoints
 
