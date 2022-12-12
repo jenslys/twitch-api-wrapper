@@ -12,8 +12,8 @@ let authToken = process.env.TWITCH_AUTH_TOKEN || generateAuthToken(); // If ther
 const port = process.env.PORT || 3000;
 const limiter = rateLimit({
   // limits it to 2 requests per minute
-	windowMs: 10000,
-	max: 2, 
+	windowMs: 60000,
+	max: 14, 
 	standardHeaders: true,
 	legacyHeaders: false,
 })
