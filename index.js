@@ -12,14 +12,15 @@ let authToken = process.env.TWITCH_AUTH_TOKEN || generateAuthToken(); // If ther
 const port = process.env.PORT || 3000;
 const limiter = rateLimit({
   // limits it to 2 requests per minute
-	windowMs: 60000,
-	max: 14, 
-	standardHeaders: true,
-	legacyHeaders: false,
+  windowMs: 60000,
+  max: 14, 
+  standardHeaders: true,
+  legacyHeaders: false,
 })
 app.use(limiter) // applies the rate limit to all requests
 
-async function generateAuthToken() {
+const generateAuthToken = async () => {
+  try {
     const body = new URLSearchParams({
       client_id,
       client_secret,
@@ -35,6 +36,9 @@ async function generateAuthToken() {
     const response = await fetch("https://id.twitch.tv/oauth2/token", options);
     const data = await response.json();
     authToken = data.access_token;
+  } catch (err) {
+    // Handle the error here
+  }
 }
 const job = schedule.scheduleJob('00 00 00 28,29,30 * *', function(){
   generateAuthToken();
