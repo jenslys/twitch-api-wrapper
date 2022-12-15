@@ -36,17 +36,11 @@ async function generateAuthToken() {
     const data = await response.json();
     authToken = data.access_token;
 }
-
 const job = schedule.scheduleJob('00 00 00 28,29,30 * *', function(){
   generateAuthToken();
 });
 
 app.get('/title/:username', async (req, res) => {
-  // Generate an authentication token if one does not already exist
-  if (!authToken) {
-    await generateAuthToken();
-  }
-
   const username = req.params.username;
   const response = await fetch(`${baseUrl}/streams?user_login=${username}`, {
     headers: {
@@ -62,16 +56,21 @@ app.get('/title/:username', async (req, res) => {
 });
 
 app.get('/game/:username', async (req, res) => {
-  // Generate an authentication token if one does not already exist
-  if (!authToken) {
-    await generateAuthToken();
-  }
-
   const username = req.params.username;
+  const response = await fetch(`${baseUrl}/streams?user_login=${username}`, {
+    headers: {
+      'Client-ID': client_id,
+      'Authorization': 'Bearer ' + authToken
+    }
+  });
+
+  const json = await response.json();
+  const stream_game = json.data?.[0]?.game_name;
+
+  res.send({ stream_game });
 });
+
 
 app.listen(port, () => {
   console.log("Listening on port: " + port);
 });
-
-module.exports = app;
