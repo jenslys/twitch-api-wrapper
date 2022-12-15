@@ -45,9 +45,7 @@ const job = schedule.scheduleJob('00 00 00 28,29,30 * *', function(){
   generateAuthToken();
 });
 
-app.get('/title/:username', async (req, res) => {
-  await generateAuthToken();
-  const username = req.params.username;
+const makeTwitchRequest = async (username) => {
   const response = await fetch(`${baseUrl}/streams?user_login=${username}`, {
     headers: {
       'Client-ID': client_id,
@@ -56,6 +54,13 @@ app.get('/title/:username', async (req, res) => {
   });
 
   const json = await response.json();
+  return json;
+}
+
+app.get('/title/:username', async (req, res) => {
+  await generateAuthToken();
+  const username = req.params.username;
+  const json = await makeTwitchRequest(username);
   const stream_title = json.data?.[0]?.title;
 
   res.send({ stream_title });
@@ -64,14 +69,7 @@ app.get('/title/:username', async (req, res) => {
 app.get('/game/:username', async (req, res) => {
   await generateAuthToken();
   const username = req.params.username;
-  const response = await fetch(`${baseUrl}/streams?user_login=${username}`, {
-    headers: {
-      'Client-ID': client_id,
-      'Authorization': 'Bearer ' + authToken
-    }
-  });
-
-  const json = await response.json();
+  const json = await makeTwitchRequest(username);
   const stream_game = json.data?.[0]?.game_name;
 
   res.send({ stream_game });
