@@ -69,3 +69,7 @@ app.get('/game/:username', async (req, res) => {
 
   const username = req.params.username;
 });
+
+app.listen(port, () => {
+  console.log("Listening on port: " + port);
+});
