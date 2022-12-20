@@ -1,16 +1,14 @@
 # Twitch API Wrapper
 
-Public API that wraps around the [Twitch Helix API](https://dev.twitch.tv/docs/api/) to fetch stream information.
+Public API that wraps around the [Twitch Helix API](https://dev.twitch.tv/docs/api/) to fetch current stream information.
 
-This was made as an companion tool for [AutoVOD](https://github.com/jenslys/autovod). So currently the only endpoints are for fetching the stream title and game.
+This was made as an companion tool for [AutoVOD](https://github.com/jenslys/autovod). So currently it only returns the stream date and current game.
 
 **Limitation**: The Twitch API doesn't return anything if the streamer is not live.
 
 ## Endpoints
 
-`/title/<username-here>`
-
-`/game/<username-here>`
+`/info/<username-here>`
 
 ## Installation
 

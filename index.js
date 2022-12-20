@@ -57,22 +57,14 @@ const makeTwitchRequest = async (username) => {
   return json;
 }
 
-app.get('/title/:username', async (req, res) => {
+app.get('/info/:username', async (req, res) => {
   await generateAuthToken();
   const username = req.params.username;
   const json = await makeTwitchRequest(username);
   const stream_title = json.data?.[0]?.title;
-
-  res.send({ stream_title });
-});
-
-app.get('/game/:username', async (req, res) => {
-  await generateAuthToken();
-  const username = req.params.username;
-  const json = await makeTwitchRequest(username);
   const stream_game = json.data?.[0]?.game_name;
 
-  res.send({ stream_game });
+  res.send({ stream_title, stream_game });
 });
 
 
