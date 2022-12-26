@@ -2,7 +2,7 @@
 
 Public API that wraps around the [Twitch Helix API](https://dev.twitch.tv/docs/api/) to fetch current stream information.
 
-This was made as an companion tool for [AutoVOD](https://github.com/jenslys/autovod). So currently it only returns the stream date and current game.
+This was made as an companion tool for [AutoVOD](https://github.com/jenslys/autovod). So currently it only returns the stream title and current game.
 
 **Limitation**: The Twitch API doesn't return anything if the streamer is not live.
 
