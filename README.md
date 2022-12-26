@@ -50,4 +50,4 @@ Environment variables
 
 1. Hit the button above.
 1. Leave everything as default.
-1. Added the requried env variables as listed above.
+1. Add the requried env variables as listed above.
