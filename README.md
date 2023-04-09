@@ -50,5 +50,5 @@ Environment variables
 
 1. Hit the button above.
 1. Leave everything as default.
-1. Add the required env variables as listed above.
+1. Add the required env variables as listed above on vercel.
 1. Hit deploy.
